@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+
+<style>
+body {
+	background-color: 	#B0C4DE
+}
+.container{
+	background-color: "#B0C4DE"
+}
+.container{
+	float: center
+}
+.nombre{
+	color: #FFFFFF;
+}
+#bien{
+	color: #FFFFFF;
+}	
+</style>
+
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	
+	<div class="container" align="left">
+		<h1 align="center">Lista de Productos</h1>
+
+		<div class="card text-center">
+			<div class="card-header"></div>
+			<div class="card-body">
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">Nombres</th>
+							<th scope="col">Precio</th>
+							<th scope="col">Categoria</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody th:each="producto: ${productos}">
+						<tr>
+							<td th:text="${producto.nomProd}"></td>
+							<td th:text="${producto.precioUnitario}"></td>
+							<td th:text="${producto.categoria.nombre}"></td>
+							<td><a sec:authorize="hasRole('ROLE_ADMIN')"
+								th:href="@{'/Productos/edit/' + ${producto.codProd} }"
+								class="btn btn-warning"><i class="fas fa-edit"></i></a> 
+								<a sec:authorize="hasRole('ROLE_ADMIN')"
+								th:href="@{'/Productos/del/' + ${producto.codProd}}"
+								class="btn btn-danger"><i class="fas fa-trash-alt"></i></a> 
+								<a sec:authorize="hasAnyRole('ROLE_CLIENTE')"
+								th:href="@{'/Productos/carrito/' + ${producto.codProd}}"
+								class="btn btn-info"><i class="fas fa-cart-plus"></i></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+			<div class="card-footer text-muted">
+				<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/Productos/register}" class="btn btn-primary"><i
+					class="fas fa-file-alt"></i> Nuevo Producto</a>
+			</div>
+		</div>
+	</div>
+
+	<footer th:fragment="footer">
+		<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+		<script th:src="@{/js/bootstrap.min.js}"></script>
+		<script th:src="@{/js/chosen.jquery.min.js}"></script>
+		<script th:src="@{/js/fontawesome.min.js}"></script>
+		<script th:src="@{/js/sweetalert.min.js}"></script>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<style>
+body {background-color: #e6e6ff}
+.nombre{
+	color: #FFFFFF;
+}
+#bien{
+	color: #FFFFFF;
+	size: 15px;
+}
+#casa{
+	display:block;
+	margin:auto;
+}
+</style>
+<body bgcolor="red">
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+		<div class="row">
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+	<center>
+		<img class="casa" th:src="@{/images/tienda.png}" alt="logo" >
+	</center>
+</body>
+</html>

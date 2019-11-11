@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<style>
+body {
+	background-color: #e6e6ff
+}
+
+.nombre {
+	color: #FFFFFF;
+}
+
+#bien {
+	color: #FFFFFF;
+}
+</style>
+
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<form th:action="@{/Productos/validate}" th:object="${tarjeta}"
+		method="post">
+		<div class="container">
+			<h1 align="center">Pago de Pedido</h1>
+			<div>
+				<img th:src="@{/images/bcp.png}" width="150" height="90" alt="logo">
+				<img th:src="@{/images/bbva.png}" width="150" height="90" alt="logo">
+				<img th:src="@{/images/inter.jpg}" width="150" height="90"
+					alt="logo">
+			</div>
+			<div>
+				<i class="fab fa-tripadvisor"></i>
+			</div>
+			<div class="form-row">
+				<div class="form-group">
+					<label for="numero">Nro de Tarjeta:</label> <input type="text"
+						class="form-control" placeholder="XXXX XXXX XXXX XXXX"
+						th:field="*{numero}">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="fecha">Fecha de Caducidad</label> <input type="text"
+						class="form-control" placeholder="MM/YY" th:field="*{fechaVencimiento}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="ccv">CCV: </label> <input type="text"
+					class="form-control" placeholder="****" th:field="*{codigoSeguridad}">
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="nombre">Nombre: </label> <input type="text"
+						class="form-control" th:field="*{nombre}">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="apellidos">Apellidos: </label> <input type="text"
+						class="form-control" th:field="*{apellidos}">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" id="gridCheck">
+					<label class="form-check-label" for="gridCheck"> Acepto
+						Terminos y Condiciones</label>
+				</div>
+			</div>
+			<div align="center">
+				<button type="submit" class="btn btn-primary">Confirmar</button>
+			</div>
+		</div>
+	</form>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
